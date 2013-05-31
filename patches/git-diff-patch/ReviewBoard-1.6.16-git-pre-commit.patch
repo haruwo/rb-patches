@@ -1,0 +1,18 @@
+diff --git reviewboard/diffviewer/parser.py.orig reviewboard/diffviewer/parser.py
+index 38b7f85..f0fa00d 100644
+--- reviewboard/diffviewer/parser.py.orig
++++ reviewboard/diffviewer/parser.py
+@@ -187,9 +187,10 @@ class DiffParser(object):
+         if "  " in s:
+             return re.split(r"  +", s, 1)
+
+-        raise DiffParserError("No valid separator after the filename was " +
+-                              "found in the diff header [" + s + "]",
+-                              linenum)
++        return [s, "(working copy)"]
++        #raise DiffParserError("No valid separator after the filename was " +
++        #                      "found in the diff header [" + s + "]",
++        #                      linenum)
+
+     def raw_diff(self, diffset):
+         """Returns a raw diff as a string.
